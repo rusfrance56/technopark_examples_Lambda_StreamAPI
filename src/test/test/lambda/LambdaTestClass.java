@@ -1,7 +1,7 @@
 package lambda;
 
 
-import helpfulClasses.MyLambda;
+import com.helpfulClasses.MyLambda;
 import org.junit.Assert;
 import org.junit.Test;
 
