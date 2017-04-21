@@ -75,4 +75,13 @@ public class TestsStreamBasic {
                 strings.stream()
                         .collect(Collectors.joining(":", "!", "!")));
     }
+
+    @Test
+    public void testStream9() {
+        List<String> strings = Arrays.asList("Bar", "Bazzz2", "Baz", "Bazzz3");
+        //Assert.assertEquals(Arrays.asList("Bar", "Baz"),
+        strings.stream()
+                .filter(s -> s.length()==3).forEach(s -> System.out.println(s.concat("1")));
+        //.collect(Collectors.toList()));
+    }
 }

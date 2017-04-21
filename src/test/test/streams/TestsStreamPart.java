@@ -1,40 +1,16 @@
 package streams;
 
-import com.helpfulClasses.music.Album;
-import com.helpfulClasses.music.Track;
+import com.util.TestsBase;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
-public class TestsStreamPart {
-
-    private static List<Album> albums;
-    private static List<Track> trackList;
-    private static List<Track> trackList2;
-
-    @BeforeClass
-    public static void init() {
-        albums = new ArrayList<>();
-        Album album = new Album("first album");
-        trackList = album.getTrackList();
-        trackList.add(new Track("first Track", 30));
-        trackList.add(new Track("first Track2", 90));
-        trackList.add(new Track("first Track3", 70));
-        Album album2 = new Album("first album");
-        trackList2 = album2.getTrackList();
-        trackList2.add(new Track("first2 Track", 30));
-        trackList2.add(new Track("first2 Track2", 90));
-        trackList2.add(new Track("first2 Track3", 70));
-        albums.add(album);
-        albums.add(album2);
-    }
+public class TestsStreamPart extends TestsBase {
 
     @Test
     public void testStream() {
@@ -101,5 +77,15 @@ public class TestsStreamPart {
         trackNamesCheck.add("first2 Track2");
         trackNamesCheck.add("first2 Track3");
         Assert.assertEquals(trackNamesCheck, trackNames);
+    }
+
+    @Test
+    public void testStreamStatistic() {
+        IntSummaryStatistics intSummaryStatistics = trackList.stream().mapToInt(track -> track.getLength()).summaryStatistics();
+        System.out.printf("Max: %d, Min: %d, Ave: %f, Sum: %d",
+                intSummaryStatistics.getMax(),
+                intSummaryStatistics.getMin(),
+                intSummaryStatistics.getAverage(),
+                intSummaryStatistics.getSum());
     }
 }

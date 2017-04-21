@@ -1,4 +1,4 @@
-package com.helpfulClasses;
+package com.util;
 
 public interface MyLambda {
 
