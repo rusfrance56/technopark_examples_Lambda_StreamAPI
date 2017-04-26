@@ -10,14 +10,16 @@ import java.util.Arrays;
 import java.util.List;
 
 abstract public class TestsBase {
-    protected static List<Album> albums;
-    protected static List<Track> trackList;
-    protected static List<Track> trackList2;
-    protected static List<Track> trackList3;
-    protected static List<Artist> artists;
+    public static List<Album> albums;
+    public static List<Track> trackList;
+    public static List<Track> trackList2;
+    public static List<Track> trackList3;
+    private static final List<Track> trackList4;
+    public static List<Artist> artists;
 
-    @BeforeClass
-    public static void init() {
+    /*@BeforeClass
+        public static void init() {*/
+    static {
         artists = new ArrayList<>();
         Artist artist = new Artist("The Beatles");
         artist.setMembers(Arrays.asList("McCartny", "Lenon"));
@@ -30,6 +32,10 @@ abstract public class TestsBase {
         Artist artist2 = new Artist("Eminem");
         artist2.setMembers(Arrays.asList("Marshal Matters"));
         artists.add(artist2);
+
+        Artist artist3 = new Artist("Eminem wwwwwwwwwwwww");
+        artist3.setMembers(Arrays.asList("Marshal Matters"));
+        artists.add(artist3);
 
         albums = new ArrayList<>();
         Album album = new Album("first album", artist2);
@@ -47,8 +53,15 @@ abstract public class TestsBase {
         trackList3.add(new Track("first2 Track", 30));
         trackList3.add(new Track("first2 Track2", 90));
         trackList3.add(new Track("first2 Track3", 70));
+        Album album4 = new Album("third album", artist3);
+        trackList4 = album4.getTrackList();
+        trackList4.add(new Track("first2 Track", 30));
+        trackList4.add(new Track("first2 Track2", 90));
+        trackList4.add(new Track("first2 Track3", 70));
         albums.add(album);
         albums.add(album2);
         albums.add(album3);
+        albums.add(album4);
     }
+    /*}*/
 }

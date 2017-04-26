@@ -24,7 +24,7 @@ public class TestStreamTasks extends TestsBase {
 
     @Test
     public void testGetTotalTracks() {
-        Assert.assertTrue(9 == getTotalTracks(albums));
+        Assert.assertTrue(12 == getTotalTracks(albums));
     }
 
     @Test
@@ -70,14 +70,14 @@ public class TestStreamTasks extends TestsBase {
     @Test
     public void testBandsAndSoloCheck() {
         Map<Boolean, List<Artist>> collect = artists.stream().collect(partitioningBy(Artist::isSolo));
-        Assert.assertEquals(1 , collect.get(true).size());
+        Assert.assertEquals(2 , collect.get(true).size());
         Assert.assertEquals(2 , collect.get(false).size());
     }
 
     @Test
     public void testGroupByMusician() {
         Map<Artist, List<Album>> collect = albums.stream().collect(groupingBy(album -> album.getArtist()));
-        Assert.assertEquals(2, collect.size());
+        Assert.assertEquals(3, collect.size());
     }
 
     @Test
